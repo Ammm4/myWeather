@@ -1,0 +1,255 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #000000;
+  background-image: linear-gradient(to bottom right,#000000, #E84393);
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  color: #f3f3f3;
+  transition: ease all 0.5s;
+  
+}
+.app-wrap {
+  height: 100vh;
+}
+.app-name {
+  font-size: 4.5rem;
+}
+.location-entry {
+  padding: 50px 15px 15px;
+}
+
+.location-entry .search {
+  
+  outline: none;
+  border: none;
+  background-image: url('images/search-icon.jpg');
+  background-position: 2px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  text-indent: 30px;
+  font-size: 16px;
+  padding: 10px 15px;
+  width: 100%;
+  border-radius: 10px 0px;
+  border-bottom: 3px solid orangered;
+  background-color: #f3f3f3;
+  color: #313131;
+  
+}
+
+.clear {
+  margin-top: 0;
+  padding: 0 15px 0 15px;
+  text-align: right;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 1.2rem;
+  
+}
+.place-date .location {
+   font-size: 2.2rem;
+   font-weight: 500;
+}
+
+.place-date .country {
+  text-transform: capitalize;
+  font-size: 0.75rem;
+}
+
+.place-date .date-today {
+  margin-top: 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.weather-info .temp {
+   font-size: 4rem;
+   font-weight: 600;
+   text-shadow: 5px 5px 5px rgba(0,0,0,0.9);
+}
+.weather-info .min-max {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-shadow: 2px 2px rgba(0,0,0,0.9);
+  margin-top: -0.6rem;
+}
+.weather-info .weather-text {
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-shadow: 2px 2px rgba(0,0,0,0.9);
+  margin-top: -1.2rem;
+}
+
+#no-match {
+  margin-bottom: 1.5rem;
+}
+
+#location-list {
+  padding-left: 15px;
+  padding-right: 15px;
+  list-style-type: none;
+}
+li {
+  padding: 11px;
+  background-color: #313131;
+}
+
+li:hover{
+  cursor: pointer;
+  background-color: grey;
+  color: white;
+}
+
+/* Default Display*/
+.capitals-weather {
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-row-gap: 5px;
+  margin-top: 2.5rem;
+
+}
+.city {
+  font-weight: bold;
+  width:93%; 
+  margin: auto;
+  box-shadow: .5rem .5rem .5rem rgba(0,0,0,0.5);
+}
+.main-info{
+  padding: 5px;
+}
+.weather-info {
+  margin-top: 1.7rem;
+}
+.other-info {
+  background-color: #f5f5f5;
+  color: #313131;
+  line-height: 30px;
+}
+
+.other-info h5{
+  color:#868686
+}
+
+.extras {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+}
+.weather1-icon {
+   width:2rem;
+   height: 2rem;
+}
+.description {
+  font-size: 0.7rem;
+  margin-top: -1rem;
+}
+.values {
+  font-size: 0.85rem;
+  margin-top: -.2rem;
+}
+
+.london .main-info{
+  background: url(images/london.jpg) no-repeat center;
+  background-size: cover;
+  
+  
+}
+
+.edinburgh .main-info{
+  background: url(images/edinburgh.jpg) no-repeat center;
+  background-size: cover;
+  
+}
+.cardiff .main-info{
+  background: url(images/cardiff.jpg) no-repeat center;
+  background-size: cover;
+  
+}
+
+.belfast .main-info{
+  background: url(images/belfast.jpg) no-repeat center;
+  background-size: cover;
+  
+}
+/* Search Results*/
+.searchedCity {
+  display: grid;
+  grid-template-columns: 35%;
+  justify-content: center;
+}
+.other .main-info { 
+  background-size: cover;
+}
+/*Weather Icon*/
+
+.weather-icon {
+  width: 5.5rem;
+  height: 5.5rem;
+  filter: invert(100%);
+}
+
+
+
+/*Media Queries*/
+
+@media only screen and (max-width:1200px) {
+  .city {
+
+    width:98%; 
+    margin: auto;
+    
+  }
+  .searchedCity {
+    display: grid;
+    grid-template-columns: 50%;
+    justify-content: center;
+  }
+
+}
+
+@media only screen and (max-width:1000px) {
+  .capitals-weather {
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+  
+  }
+  .city {
+    
+    width:98%; 
+    margin: auto;
+    
+  }
+  .searchedCity {
+    display: grid;
+    grid-template-columns: 70%;
+    justify-content: center;
+  }
+}
+@media only screen and (max-width:450px) {
+  .app-name {
+    font-size: 2rem;
+  }
+  .capitals-weather {
+    display:grid;
+    grid-template-columns: repeat(1, 1fr);
+    
+  
+  }
+  .city {
+    
+    width:98%; 
+    margin: auto;
+    
+  }
+
+  .searchedCity {
+    display: grid;
+    grid-template-columns: 100%;
+    justify-content: center;
+  }
+
+}
