@@ -1,17 +1,294 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>myWeather</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>myWeather</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
+  <div class="app-wrap">
+    <header>
+         <h1 class="app-name">myWeather</h1>
+    </header>
+
+    <main>
+
+        <section class="location-entry">
+            <div>
+               <input type="text" placeholder="Enter any U.K locations..." class="search" onkeyup="searchMatchedLocations()"/>
+            </div>
+        </section>
+
+        
+        <section class="phonebook">
+
+             <ul id="location-list"></ul>
+             <div id="no-match"></div>
+             
+        </section>
+        
+        <div class="searchedCity" style="display: none">
+            <div class="clear" onclick="clearBox()" style="display: none;">close</div>
+                <section class="city other">
+                      <div class="main-info">
+                                    <div class="place-date">
+                                            <div class="location"></div>
+                                            <div class="country"></div>
+                                            <div class="date-today"></div>
+                                    </div>
+                                    
+                                      <div class="weather-info">
+                                            <div class="temp"> </div>
+                                            <div class="min-max">Min 1 | Max 2</div>
+                                            <div class="weather"></div>
+                                            <div class="weather-text"></div>
+                                      </div>
+                      </div>  
+                      
+                            <div class="other-info">
+                                 <h5>More Info:</h5>
+                                 <div class="extras">
+                                       <div class="wind">
+                                             <div>
+                                                   <img src="./images/weather1-icon/wind.png" class="weather1-icon">
+                                             </div>
+                                             <div class="description">Wind</div>
+                                             <div class="wind-value values"></div>
+                                       </div>
+                                            
+                                       <div class="humidity">
+                                             <div>
+                                                   <img src="./images/weather1-icon/rain.png" class="weather1-icon">
+                                             </div>
+                                             <div class="description">Humidity</div>
+                                             <div class="humidity-value values"></div>
+                                       </div>
+
+                                       <div class="percipitation">
+                                             <div >
+                                                   <img src="./images/weather1-icon/percipitation.png" class="weather1-icon">
+                                             </div>
+                                             <div class="description">Percipit.</div>
+                                             <div class="percipitation-value values"></div>
+                                       </div>
+                                 </div>
+
+                              </div>
+                      
+
+         </section>
+          </div>
+      <div class="capitals-weather">
+
+         <section class="city london">
+                      <div class="main-info">
+                                    <div class="place-date">
+                                            <div class="location"></div>
+                                            <div class="country"></div>
+                                            <div class="date-today"></div>
+                                    </div>
+                                    
+                                      <div class="weather-info">
+                                            <div class="temp"> </div>
+                                            <div class="min-max">Min 1 | Max 2</div>
+                                            <div class="weather"></div>
+                                            <div class="weather-text"></div>
+                                      </div>
+                      </div>  
+
+                      <div class="other-info">
+                        <h5>More Info:</h5>
+                        <div class="extras">
+                              <div class="wind">
+                                    <div>
+                                          <img src="./images/weather1-icon/wind.png" class="weather1-icon">
+                                    </div>
+                                    <div class="description">Wind</div>
+                                    <div class="wind-value values"></div>
+                              </div>
+                                   
+                              <div class="humidity">
+                                    <div>
+                                          <img src="./images/weather1-icon/rain.png" class="weather1-icon">
+                                    </div>
+                                    <div class="description">Humidity</div>
+                                    <div class="humidity-value values"></div>
+                              </div>
+
+                              <div class="percipitation">
+                                    <div >
+                                          <img src="./images/weather1-icon/percipitation.png" class="weather1-icon">
+                                    </div>
+                                    <div class="description">Percipit.</div>
+                                    <div class="percipitation-value values"></div>
+                              </div>
+                        </div>
+
+                     </div>
+
+         </section>
+
+         <section class="city edinburgh">
+                      <div class="main-info">
+                                    <div class="place-date">
+                                            <div class="location"></div>
+                                            <div class="country"></div>
+                                            <div class="date-today"></div>
+                                    </div>
+                                    
+                                      <div class="weather-info">
+                                            <div class="temp"></div>
+                                            <div class="min-max">Min 1 | Max 2</div>
+                                            <div class="weather"> </div>                                            
+                                            <div class="weather-text"></div>
+                                      </div>
+                      </div>  
+
+                      <div class="other-info">
+                        <h5>More Info:</h5>
+                        <div class="extras">
+                              <div class="wind">
+                                    <div>
+                                          <img src="./images/weather1-icon/wind.png" class="weather1-icon">
+                                    </div>
+                                    <div class="description">Wind</div>
+                                    <div class="wind-value values"></div>
+                              </div>
+                                   
+                              <div class="humidity">
+                                    <div>
+                                          <img src="./images/weather1-icon/rain.png" class="weather1-icon">
+                                    </div>
+                                    <div class="description">Humidity</div>
+                                    <div class="humidity-value values"></div>
+                              </div>
+
+                              <div class="percipitation">
+                                    <div >
+                                          <img src="./images/weather1-icon/percipitation.png" class="weather1-icon">
+                                    </div>
+                                    <div class="description">Percipit.</div>
+                                    <div class="percipitation-value values"></div>
+                              </div>
+                        </div>
+
+                     </div>
+
+    </section>
+
+    <section class="city cardiff">
+
+                    <div class="main-info">
+                                  <div class="place-date">
+                                          <div class="location"></div>
+                                          <div class="country"></div>
+                                          <div class="date-today"></div>
+                                  </div>
+                                  
+                                    <div class="weather-info">
+                                          <div class="temp"> </div>
+                                          <div class="min-max">Min 1 | Max 2</div>
+                                          <div class="weather"> </div>
+                                          <div class="weather-text"></div>
+                                    </div>
+                    </div>  
+
+                    <div class="other-info">
+                        <h5>More Info:</h5>
+                        <div class="extras">
+                              <div class="wind">
+                                    <div>
+                                          <img src="./images/weather1-icon/wind.png" class="weather1-icon">
+                                    </div>
+                                    <div class="description">Wind</div>
+                                    <div class="wind-value values"></div>
+                              </div>
+                                   
+                              <div class="humidity">
+                                    <div>
+                                          <img src="./images/weather1-icon/rain.png" class="weather1-icon">
+                                    </div>
+                                    <div class="description">Humidity</div>
+                                    <div class="humidity-value values"></div>
+                              </div>
+
+                              <div class="percipitation">
+                                    <div >
+                                          <img src="./images/weather1-icon/percipitation.png" class="weather1-icon">
+                                    </div>
+                                    <div class="description">Percipit.</div>
+                                    <div class="percipitation-value values"></div>
+                              </div>
+                        </div>
+
+                     </div>
+
+    </section>
+
+    <section class="city belfast">
+      <div class="main-info">
+                    <div class="place-date">
+                            <div class="location"></div>
+                            <div class="country"></div>
+                            <div class="date-today"></div>
+                    </div>
+                    
+                      <div class="weather-info">
+                            <div class="temp"></div>
+                            <div class="min-max">Min 1<span>&#176c</span> | Max 2</div>
+                            <div class="weather"></div>
+                            <div class="weather-text"></div>
+                      </div>
+      </div>  
+      <div class="other-info">
+            <h5>More Info:</h5>
+            <div class="extras">
+                  <div class="wind">
+                        <div>
+                              <img src="./images/weather1-icon/wind.png" class="weather1-icon">
+                        </div>
+                        <div class="description">Wind</div>
+                        <div class="wind-value values"></div>
+                  </div>
+                       
+                  <div class="humidity">
+                        <div>
+                              <img src="./images/weather1-icon/rain.png" class="weather1-icon">
+                        </div>
+                        <div class="description">Humidity</div>
+                        <div class="humidity-value values"></div>
+                  </div>
+
+                  <div class="percipitation">
+                        <div >
+                              <img src="./images/weather1-icon/percipitation.png" class="weather1-icon">
+                        </div>
+                        <div class="description">Percipit.</div>
+                        <div class="percipitation-value values"></div>
+                  </div>
+            </div>
+
+         </div>
+
+</section>
+      </div>
+    
+    </main>
 
 
-  
-  <script src="main.js"></script>
+
+
+  </div>
+
+
+
+
+     <script src="main.js"></script>
+
 </body>
 </html>
