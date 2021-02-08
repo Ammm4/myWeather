@@ -14,7 +14,7 @@ body {
   
 }
 .app-wrap {
-  height: 100vh;
+  height: 110vh;
 }
 .app-name {
   font-size: 4.5rem;
@@ -192,7 +192,12 @@ li:hover{
   filter: invert(100%);
 }
 
-
+/* Footer */
+.copyright {
+  font-size: 0.7rem;
+  padding-bottom: .25rem;
+  margin-top: 3rem;
+}
 
 /*Media Queries*/
 
