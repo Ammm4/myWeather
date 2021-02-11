@@ -19,6 +19,12 @@ body {
 .app-name {
   font-size: 4.5rem;
 }
+.app-name sup{
+  font-size: 1.5rem;
+  font-weight: 100;
+  display: inline-block;
+  padding-left: 0.25rem;
+}
 .location-entry {
   padding: 50px 15px 15px;
 }
@@ -237,6 +243,12 @@ li:hover{
 @media only screen and (max-width:450px) {
   .app-name {
     font-size: 2rem;
+  }
+  .app-name sup{
+    font-size: 0.9rem;
+    font-weight: 100;
+    display: inline-block;
+    padding-left: 0.8rem;
   }
   .capitals-weather {
     display:grid;
