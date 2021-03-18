@@ -1,15 +1,11 @@
-
-
-   //const apiKey = "d009034b-26cc-4de6-a810-ccc942e86dfd";
-
-   const inputElement = document.querySelector(".location-entry .search");
+(function () {
    
-   const locations = document.getElementById('location-list');
-   
+   const inputElement = document.querySelector(".location-entry .search");  
+   const locations = document.getElementById('location-list'); 
    const noMatch = document.getElementById('no-match');
-   
+   const clear = document.querySelector('.clear');
+   const searchedCity = document.querySelector('.searchedCity');
    const capitalCityIds = [['352409' , '.london'], ['351351', '.edinburgh'], ['350758', '.cardiff'], ['350347', '.belfast']];
-   
    const landmarks = [['url("images/landmarks/england/scene1.jpg")',
                        'url("images/landmarks/england/scene2.jpg")',
                        'url("images/landmarks/england/scene3.jpg")',
@@ -37,84 +33,60 @@
 
                      ];
    var allSites;
-   
    var className;
    
+   //Add Event Listener
+   inputElement.addEventListener('keyup', searchMatchedLocations);
+   clear.addEventListener('click', clearBox);
+
+
    //Input Value
    function searchMatchedLocations() {
-   
-             let inputValue = inputElement.value;
-             
-             if (inputValue.length > 3) {
-   
+             let inputValue = inputElement.value;  
+             if (inputValue.length > 3) { 
                      locations.innerHTML = "";
-   
                      noMatch.innerText = "";
-   
-                     for (let i = 0; i < allSites.Locations.Location.length; i++){
-                       
-                             var filter = inputValue.toUpperCase();
-                             
-                             var location = allSites.Locations.Location[i].name;
-                                                                                 
-                             if(location.toUpperCase().indexOf(filter) > -1) {
-                                  
-                                  locations.insertAdjacentHTML("beforeend",`<li onclick="getLocationSpecificData(${allSites.Locations.Location[i].id})">${location}</li>`)
-                                  
-                             }
-                       
-                     } 
-                   
-                     if(locations.innerHTML == "") {
-   
-                       noMatch.innerText = "No-match found!!";
-   
-                     }
-               
+                     for (let i = 0; i < allSites.Locations.Location.length; i++){                     
+                             var filter = inputValue.toUpperCase();                            
+                             var location = allSites.Locations.Location[i].name;                                                                               
+                             if(location.toUpperCase().indexOf(filter) > -1) {                                  
+                                  locations.insertAdjacentHTML("beforeend",`<li>${location}</li>`)
+                                  locations.lastChild.addEventListener('click', () => getLocationSpecificData(allSites.Locations.Location[i].id));                                
+                             }                     
+                     }              
+                     if(locations.innerHTML == "") {  
+                       noMatch.innerText = "No-match found!!"; 
+                     }               
              } else {
                locations.innerHTML = "";
                noMatch.innerText = "";
              }
    
    }
-   
-   
+
    // All Available UK Sites
-   async function getAllSiteList() {
-   
-           const response = await fetch("http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/sitelist?key=d009034b-26cc-4de6-a810-ccc942e86dfd");
-           
-           allSites = await response.json();
-   
-           console.log(allSites);
-   
-           for(let i = 0; i < capitalCityIds.length; i++){
-   
-               className = capitalCityIds[i][1];
-               
-               await getLocationSpecificData(capitalCityIds[i][0]);
-   
+   async function getAllSiteList() { 
+           const response = await fetch("http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/sitelist?key=d009034b-26cc-4de6-a810-ccc942e86dfd");        
+           allSites = await response.json();           
+           for(let i = 0; i < capitalCityIds.length; i++){ 
+               className = capitalCityIds[i][1];              
+               await getLocationSpecificData(capitalCityIds[i][0]);  
          }
-        className = ".other";
-   
+        className = ".other";  
    }
    
    getAllSiteList();
    
-   async function getLocationSpecificData(data){
-            
+   async function getLocationSpecificData(data){      
             inputElement.value = "";
             locations.innerHTML = "";
-   
             noMatch.innerText = "";
             await fetch(`http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/${data}?res=3hourly&key=d009034b-26cc-4de6-a810-ccc942e86dfd`).
             then(data => data.json())
-            .then(data => getRequiredWeatherData(data));
-                 
+            .then(data => getRequiredWeatherData(data));             
    }
    
    function getRequiredWeatherData(data) {
-   
           var d = new Date();
           var totalTime = d.getHours() * 60 + d.getMinutes();
           var date = d.getFullYear() + "-" + ("0"+(d.getMonth()+1)).slice(-2) +"-"+("0" + d.getDate()).slice(-2);
@@ -131,7 +103,6 @@
           let minTemp = Math.min(...tempArray);
           
          for (let i = 0; i < info.length; i++) {
-   
              if (totalTime >= info[i].$ && totalTime < info[i].$ + 180){
                  displayWeather(info[i].T,minTemp, maxTemp, info[i].S, info[i].W, info[i].H, info[i].Pp, city, country, todayDate)
              }
@@ -139,13 +110,10 @@
        }
    
    function displayWeather(temp, minTemp, maxTemp, speed, weatherCode, humidity, percipitation, city, country, todayDate) {
-   
             if (className === '.other') {
-
-               document.querySelector('.searchedCity').style.display = '';
-               document.querySelector('.clear').style.display = '';
+               searchedCity.style.display = '';
+               clear.style.display = '';
                imageSelector(country);
-
             }
             document.querySelector(`${className} .place-date .location`).innerText = city;
             document.querySelector(`${className} .place-date .country`).innerText = country;
@@ -164,38 +132,27 @@
       
    }
    
-   function clearBox(){
-      
-      
+   function clearBox(){   
       document.querySelector(`.other .place-date .location`).innerText = "";
       document.querySelector(`.other .place-date .country`).innerText = "";
-      document.querySelector(`.other .place-date .date-today`).innerText = "";
-
-      
+      document.querySelector(`.other .place-date .date-today`).innerText = "";    
       document.querySelector(`.other .weather-info .temp`).innerHTML = "";
       document.querySelector(`${className} .weather-info .min-max`).innerHTML= "";
       document.querySelector(`${className} .weather-info .weather`).innerHTML= "";
       document.querySelector(`${className} .weather-info .weather-text`).innerHTML= "";
-
       document.querySelector(`${className} .other-info .extras .wind .wind-value`).innerText= "";
       document.querySelector(`${className} .other-info .extras .humidity .humidity-value `).innerText= "";
       document.querySelector(`${className} .other-info .extras .percipitation .percipitation-value`).innerText= "";
-      
-
-      document.querySelector('.searchedCity').style.display = 'none';
-      document.querySelector('.clear').style.display = 'none';
-
+      searchedCity.style.display = 'none';
+      clear.style.display = 'none';
    }
    
-   function dateBuilder(arg) {
-      
+   function dateBuilder(arg) {    
             let options = { weekday: 'long', month: 'short', day: 'numeric', year: 'numeric' };
             let date = new Date(arg);
-            return date.toLocaleDateString('en-UK', options);
-   
+            return date.toLocaleDateString('en-UK', options);  
    }
    
-
    function weatherCodeConverter(code) {
       let returnVal;
        switch (code) {
@@ -314,3 +271,4 @@ function imageSelector(country){
       document.querySelector('.other .main-info').style.backgroundImage = landmarks[3][randomNum];
    }
 }
+})();
