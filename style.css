@@ -14,7 +14,8 @@ body {
   
 }
 .app-wrap {
-  height: 110vh;
+  height: 100vh;
+  min-height: 800px;
 }
 .app-name {
   font-size: 4.5rem;
@@ -186,6 +187,7 @@ li:hover{
   display: grid;
   grid-template-columns: 35%;
   justify-content: center;
+  margin-bottom: 1rem;
 }
 .other .main-info { 
   background-size: cover;
