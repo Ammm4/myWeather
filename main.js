@@ -63,7 +63,7 @@
 
    // All Available UK Sites
    async function getAllSiteList() { 
-           const response = await fetch("http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/sitelist?key=d009034b-26cc-4de6-a810-ccc942e86dfd");        
+           const response = await fetch("https://cors-anywhere.herokuapp.com/http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/sitelist?key=d009034b-26cc-4de6-a810-ccc942e86dfd");        
            allSites = await response.json();           
            for(let i = 0; i < capitalCityIds.length; i++){ 
                className = capitalCityIds[i][1];              
