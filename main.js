@@ -1,5 +1,4 @@
 (function () {
-   
    const inputElement = document.querySelector(".location-entry .search");  
    const locations = document.getElementById('location-list'); 
    const noMatch = document.getElementById('no-match');
@@ -39,7 +38,6 @@
    inputElement.addEventListener('keyup', searchMatchedLocations);
    clear.addEventListener('click', clearBox);
 
-
    //Input Value
    function searchMatchedLocations() {
              let inputValue = inputElement.value;  
@@ -61,7 +59,6 @@
                locations.innerHTML = "";
                noMatch.innerText = "";
              }
-   
    }
 
    // All Available UK Sites
@@ -81,8 +78,8 @@
             inputElement.value = "";
             locations.innerHTML = "";
             noMatch.innerText = "";
-            await fetch(`http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/${data}?res=3hourly&key=d009034b-26cc-4de6-a810-ccc942e86dfd`).
-            then(data => data.json())
+            await fetch(`https://cors-anywhere.herokuapp.com/http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/${data}?res=3hourly&key=d009034b-26cc-4de6-a810-ccc942e86dfd`).
+             then(data => data.json())
             .then(data => getRequiredWeatherData(data));             
    }
    
