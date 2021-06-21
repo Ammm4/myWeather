@@ -63,12 +63,12 @@
 
    // All Available UK Sites
    async function getAllSiteList() { 
-           const response = await fetch("https://cors-anywhere.herokuapp.com/http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/sitelist?key=d009034b-26cc-4de6-a810-ccc942e86dfd");        
-           allSites = await response.json();           
+           const response = await fetch("http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/sitelist?key=d009034b-26cc-4de6-a810-ccc942e86dfd");        
+           allSites = await response.json();         
            for(let i = 0; i < capitalCityIds.length; i++){ 
                className = capitalCityIds[i][1];              
                await getLocationSpecificData(capitalCityIds[i][0]);  
-         }
+           }
         className = ".other";  
    }
    
@@ -78,21 +78,19 @@
             inputElement.value = "";
             locations.innerHTML = "";
             noMatch.innerText = "";
-            await fetch(`https://cors-anywhere.herokuapp.com/http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/${data}?res=3hourly&key=d009034b-26cc-4de6-a810-ccc942e86dfd`).
+            await fetch(`http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/${data}?res=3hourly&key=d009034b-26cc-4de6-a810-ccc942e86dfd`).
              then(data => data.json())
             .then(data => getRequiredWeatherData(data));             
    }
    
-   function getRequiredWeatherData(data) {
-          var d = new Date();
-          var totalTime = d.getHours() * 60 + d.getMinutes();
-          var date = d.getFullYear() + "-" + ("0"+(d.getMonth()+1)).slice(-2) +"-"+("0" + d.getDate()).slice(-2);
-          var todayDate = dateBuilder(date);
-          var data1 = data.SiteRep.DV.Location;
-          var info = data1.Period[0].Rep;
-          var city = data1.name;
-          var country = data1.country ;
+   function getRequiredWeatherData({ SiteRep: { DV: { Location } } }) { 
+          let d = new Date();
+          let totalTime = d.getHours() * 60 + d.getMinutes();
+          let date = d.getFullYear() + "-" + ("0"+(d.getMonth()+1)).slice(-2) +"-"+("0" + d.getDate()).slice(-2);
+          let todayDate = dateBuilder(date);
+          let { Period: [{Rep: info}], name:city, country } = Location;
           let tempArray = [];
+          console.log(info);
           info.forEach(element => {
              tempArray.push(element.T);  
           });
